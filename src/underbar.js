@@ -97,6 +97,18 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var result = {};
+    var newArray = [];
+
+    _.each(array, function(element){
+      result[element] = element;
+    });
+
+    _.each(result, function(val){
+      newArray.push(val);
+    });
+
+    return newArray;
   };
 
 
