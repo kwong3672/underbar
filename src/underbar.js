@@ -193,7 +193,7 @@
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
     return _.reduce(collection, function(inEvery, element){
-      if (iterator === undefined){return element;}
+      if (iterator === undefined){return element && inEvery;}
 
       if (iterator(element) && inEvery){
 
@@ -208,6 +208,7 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+
   };
 
 
