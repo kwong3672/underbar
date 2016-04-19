@@ -254,7 +254,7 @@
   _.defaults = function(obj) {
     for (var i = 1; i < arguments.length; i++){
       for (var key in arguments[i]){
-        if (!obj[key]){
+        if (obj[key] === undefined){
           obj[key] = arguments[i][key];
         }
       }
