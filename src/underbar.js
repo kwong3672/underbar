@@ -349,9 +349,8 @@
     var randomIdx = Math.floor(Math.random() * (array.length - 1));
  
     if (!array.length){return array;}
-    
-    return tempArray.splice(randomIdx,1).concat(_.shuffle(tempArray));
 
+    return tempArray.splice(randomIdx,1).concat(_.shuffle(tempArray));
   };
 
 
@@ -366,6 +365,9 @@
   // Calls the method named by functionOrKey on each value in the list.
   // Note: You will need to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
+    _.each(collection, function(element){
+      element.apply(functionOrKey, args);
+    });
   };
 
   // Sort the object's values by a criterion produced by an iterator.
@@ -373,6 +375,7 @@
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
+
   };
 
   // Zip together two or more arrays with elements of the same index
@@ -381,6 +384,21 @@
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+    var results = [];
+    var maxLength = _.reduce(arguments, function(longest, array){
+      if (longest < array.length) {longest = array.length;}
+      return longest
+    }, 0)
+
+    for (var i = 0; i < maxLength; i++){
+      var subArray = [];
+      for (var j = 0; j < arguments.length; j++){
+        subArray.push(arguments[j][i]);
+      }
+      results.push(subArray);
+    }
+
+    return results;
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
