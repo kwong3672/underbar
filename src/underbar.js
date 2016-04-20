@@ -464,5 +464,14 @@
   //
   // Note: This is difficult! It may take a while to implement.
   _.throttle = function(func, wait) {
+    var triggered = false;
+
+    return function(){
+      if (!triggered){
+        triggered = true;
+        setTimeout(function(){triggered = false}, wait);
+        return func.apply(this, arguments)
+      }
+    }
   };
 }());
